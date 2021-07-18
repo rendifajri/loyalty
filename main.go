@@ -15,10 +15,18 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	if n < 2 {
+		fmt.Println("Minimal 2 pemain.")
+		return
+	}
 	fmt.Println("Masukkan jumlah dadu: ")
 	_, err = fmt.Scan(&m)
 	if err != nil {
 		fmt.Println(err)
+		return
+	}
+	if m < 2 {
+		fmt.Println("Minimal 2 dadu.")
 		return
 	}
 
@@ -35,7 +43,7 @@ func main() {
 	}
 	rand.Seed(time.Now().UTC().UnixNano())
 	giliran := 1
-	for len(cekJmlDaduPemain(dadu, n)) != 1 {
+	for len(cekJmlDaduPemain(dadu, n)) > 1 {
 		fmt.Println("==================")
 		fmt.Printf("Giliran %d lempar dadu:\n", giliran)
 		temp_dadu := make([]int, n)
@@ -63,11 +71,14 @@ func main() {
 					if temp_i >= n {
 						temp_i = 0
 					}
-					for len(dadu[temp_i]) == 0 {
+					n_i := 0
+					n_try := n * 2
+					for len(dadu[temp_i]) == 0 && n_i < n_try {
 						temp_i = temp_i + 1
 						if temp_i >= n {
 							temp_i = 0
 						}
+						n_i++
 					}
 					temp_dadu[temp_i]++
 				} else if dadu[i][j] == "6" {
