@@ -25,16 +25,12 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	if m < 2 {
-		fmt.Println("Minimal 2 dadu.")
-		return
-	}
 
 	poin := make([]int, n)
 	for i := 0; i < n; i++ {
 		poin[i] = 0
 	}
-	dadu := make([][]string, n, m)
+	dadu := make([][]string, n)
 	for i := 0; i < n; i++ {
 		dadu[i] = make([]string, m)
 		for j := 0; j < m; j++ {
